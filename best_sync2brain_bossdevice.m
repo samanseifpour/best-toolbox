@@ -15,17 +15,16 @@ classdef best_sync2brain_bossdevice <handle
             obj.best_toolbox=best_toolbox;
             obj.bb=bossdevice;
             %% Loading defaults
-            obj.bb.calibration_mode = 'no';
-            obj.bb.armed = 'no';
+            obj.bb.disarm;
             obj.bb.sample_and_hold_period=0;
             obj.bb.theta.ignore; pause(0.1)
             obj.bb.beta.ignore; pause(0.1)
             obj.bb.alpha.ignore; pause(0.1)
-            setparam(obj.bb.tg, 'QLY', 'eeg_artifact_threshold', [1e6 1e6])
+            setparam(obj.bb, 'QLY', 'eeg_artifact_threshold', [1e6 1e6])
             MI=2;
-            setparam(obj.bb.tg, 'QLY', 'inst_freq_max_instability', [1e6 1e6 1 1 1e6 1e6])
-            setparam(obj.bb.tg, 'VIS/IF Stability', 'refline_2',100);
-            try setparam(obj.bb.tg, 'AlphaPower/AlphaPowerWindow', 'Value',[8 14]); catch, end
+            setparam(obj.bb, 'QLY', 'inst_freq_max_instability', [1e6 1e6 1 1 1e6 1e6])
+            setparam(obj.bb, 'VIS/IF Stability', 'refline_2',100);
+            try setparam(obj.bb, 'AlphaPower/AlphaPowerWindow', 'Value',[8 14]); catch, end
             %% Setting Num of EEG & AUX Channels
             % these depends on Protocol for NeurOne, for ACS we can particularly ask the user to define Num of Aux and EEG Channels being streamed
             InputDevice=obj.best_toolbox.inputs.condMat{1,obj.best_toolbox.inputs.colLabel.inputDevices};
