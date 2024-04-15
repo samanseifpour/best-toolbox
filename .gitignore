@@ -1,7 +1,2 @@
-
-*.mldatx
-*.fig
-*.mat
-*.asv
-t.m
-*.xml
+# List of untracked files to ignore
+work
